@@ -5,6 +5,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE, ADASYN
+from hyperdash import Experiment
 import numpy as np
 
 from data_reader import read_data
@@ -22,3 +23,7 @@ print("score: {0}".format(accuracy_score(pipeline.predict(X_test), Y_test)))
 cm = confusion_matrix(Y_test, pipeline.predict(X_test))
 print("False positive:{0}/{1}".format(cm[0, 1], cm[0, 0] + cm[0, 1]))
 print("False negative:{0}/{1}".format(cm[1, 0], cm[1, 1] + cm[1, 0]))
+
+experiment = Experiment("Digits Classifier")
+experiment.metric("accuracy", accuracy_score(pipeline.predict(X_test), Y_test))
+experiment.end()
