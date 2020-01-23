@@ -2,7 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from imblearn.over_sampling import SMOTE
 from sklearn import cluster
+from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import RFE, VarianceThreshold, SelectKBest, chi2
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.neural_network import MLPClassifier
@@ -27,7 +29,7 @@ neural_network.fit(X_train, Y_train)
 score = test("Neural network", neural_network, X_test, Y_test)
 results.append(score)
 
-random_forest = make_pipeline(StandardScaler(), RandomForestClassifier(n_jobs=-1))
+random_forest = make_pipeline(StandardScaler(), RandomForestClassifier(n_jobs=-1, ))
 random_forest.fit(X_train, Y_train)
 score = test("Random forest", random_forest, X_test, Y_test)
 results.append(score)
@@ -61,6 +63,12 @@ plt.title('Method')
 
 plt.show()
 
+
+pca = PCA()
+from sklearn.metrics import confusion_matrix
+confusion_matrix()
+
+
 # Create grid search, and pass in all defined values
 param_grid = [{'n_estimators': [1, 10, 100, 200]}]
 
@@ -71,3 +79,11 @@ best_model = gridsearch.fit(X_train, Y_train)
 
 print('Best n_estimators:', best_model.best_estimator_.get_params(['n_estimators']))
 best_model.score()
+
+RFE(RandomForestClassifier(n_jobs=-1), n_features_to_select=15, step=3)
+
+from sklearn.feature_selection import RFE
+
+RFE(RandomForestClassifier(n_jobs=-1))
+
+SelectKBest()
