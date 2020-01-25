@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from imblearn.over_sampling import SMOTE
+from imblearn.over_sampling import SMOTE, RandomOverSampler
 from sklearn import cluster
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.feature_selection import RFE, VarianceThreshold, SelectKBest, chi2
+from sklearn.feature_selection import RFE
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.neural_network import MLPClassifier
@@ -20,11 +20,12 @@ X_train, X_test, Y_train, Y_test = train_test_split(data[:, :30], data[:, 30:], 
 Y_train = Y_train.astype(int)
 Y_test = Y_test.astype(int)
 
-X_train, Y_train = SMOTE().fit_resample(X_train, Y_train)
+X_train, Y_train = SMOTE(sampling_strategy=0.5).fit_resample(X_train, Y_train)
 
 results = []
 
-neural_network = make_pipeline(cluster.FeatureAgglomeration(n_clusters=16), StandardScaler(), MLPClassifier())
+neural_network = make_pipeline(cluster.FeatureAgglomeration(n_clusters=16), StandardScaler(),
+                               MLPClassifier(hidden_layer_sizes=(10, 0)))
 neural_network.fit(X_train, Y_train)
 score = test("Neural network", neural_network, X_test, Y_test)
 results.append(score)
@@ -63,11 +64,7 @@ plt.title('Method')
 
 plt.show()
 
-
 pca = PCA()
-from sklearn.metrics import confusion_matrix
-confusion_matrix()
-
 
 # Create grid search, and pass in all defined values
 param_grid = [{'n_estimators': [1, 10, 100, 200]}]
@@ -86,4 +83,5 @@ from sklearn.feature_selection import RFE
 
 RFE(RandomForestClassifier(n_jobs=-1))
 
-SelectKBest()
+RandomOverSampler().fit_resample(X_train.tolist(), y=Y_test)
+Y_test.itemset()
