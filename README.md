@@ -22,7 +22,7 @@ Następnie porównywano wyniki false-positive oraz false-negative na podstawie m
 #### Wnioski:
 Klasyfikator powinien przede wszystkim dążyć do zminimmalizowania błędów false-negative czyli jak najrzadziej klasyfikować oszustwa jako prawidłowe transakcje, ale nie powinien też klasyfikować wszystkiego jako oszustwo.
 
-Najmniejszy błąd false-negative osiągnęły naiwny klasyfikator Bayesa i kwadratowa analiza dyskryminacyjna, ale oba dają błąd false-positive kilka rzędów wyższy niż pozostałe algorytmy. Analizując błędy, oraz mając na uwadze liczbę hiperparametrów do zbadania wybrano **sieć neuronową**. Szczegółowe dane z testu znajdują się w notatniku *Wybor_modelu.ipynb*
+Najmniejszy błąd false-negative osiągnęły naiwny klasyfikator Bayesa i kwadratowa analiza dyskryminacyjna, ale oba dają błąd false-positive kilka rzędów wyższy niż pozostałe algorytmy. Analizując błędy, oraz mając na uwadze liczbę hiperparametrów do zbadania wybrano **sieć neuronową**. Szczegółowe dane z testu znajdują się w notatniku [Wybor_modelu.ipynb](Wybor_modelu.ipynb)
 
 ## Wybór metody oversamplingu
 Ponieważ dane są skrajnie niezbalansowane zdecydowano się chociaż częściowo naprawić ten problem poprzez oversampling istniejących próbek. Wszystkie modele na tym etapie były porównywane poprzez wyniki wyuczonych na nich sieci neuronowych po wygenerowaniu danych do poziomu wyrównania liczności klas.
@@ -36,7 +36,7 @@ Przetestowano metody:
 #### Wnioski:
 Wszystkie metody okazały się znacząco podnosić skoteczność w wykrywaniu fałszywych transakcji, różnice pomiędzy nimi samymi są jednak niewielkie. Zdecydowano się na użycie metody ***SMOTE***.
 
-Szczegółowe testy znajdują się w pliku *Wybor_metody_oversamplingu.ipynb*.
+Szczegółowe testy znajdują się w pliku [Wybor_metody_oversamplingu.ipynb](Wybor_metody_oversamplingu.ipynb).
 
 ## Wybór współczynnika oversamplingu
 Współczynnik oversamplingu to procent licznośći jaki klasa stanowiąca mniejszość pierwotnie będzie stanowić w zbiorze po oversamplingu. Np. dla n = 0.7 W finalnym zbiorze 7 na 10 próbek będzie należało do klasy mniejszościowej(w tym wypadku są to transakcje fałszywe).
@@ -55,7 +55,7 @@ Testy przeprowadzono podobnie do poprzednich przypadków, trenując sieci na pos
 #### Wnioski:
 Wyniki wydają się zadziwiająco zbliżone, co więcej nie można znaleźć wśród nich żadnej tendencji. Wybrano najkorzystniejszy wynik **n = 0.85**
 
-Szczegółowe testy znajdują się w pliku *Wybor_wspolczynnika_oversamplingu.ipnb*.
+Szczegółowe testy znajdują się w pliku [Wybor_wspolczynnika_oversamplingu.ipnb](Wybor_wspolczynnika_oversamplingu.ipnb).
 
 ## Wybór metody redukcji wymiarów
 Dane wejściowe posiadają 30 wymiarów ilościowych. Większość z nich prawdopodobnie układa się w rozkład normalny. W redukcji testowano zarówno metody rzutujące wymiary na nowe, ale również metody bezpośrednio wybierające z istniejących wymiarów. Dla testów przyjęto wybór 15 wymiarów dla każdej z metod, i próg threshold = 0.8 dla metody progu wariancji.
@@ -71,7 +71,7 @@ Testowano metody:
 #### Wnioski:
 Różnice wyników poszczególnych metod nie są spektakularne. Wybrano najlepszą metodę Wyboru K najlepszych cech.
 
-Szczegółowe testy znajdują się w pliku *Wybor_metody_redukcji_wymiarow.ipnb*.
+Szczegółowe testy znajdują się w pliku [Wybor_metody_redukcji_wymiarow.ipnb](Wybor_metody_redukcji_wymiarow.ipnb)
  
 ## Wybór liczby wymiarów
 W poprzednim teście testowano poszczególne metody dla redukcji do 15 wymiarów, liczbę te można jednak zmienią aby poprawić jakość klasyfikacji lub przyspieszyć proces uczenia.
@@ -89,7 +89,7 @@ Testowano następujące liczby cech po zredukowaniu:
 #### Wnioski:
 Przy redukcji wymiarów można zaobserwować zależność, że przy zmniejszaniu liczby wymiarów od około k = 10 skuteczność klasyfikacji zaczyna spadać. Nie są to jednak znaczne wartości. Dlatego zdecydowano się na redukcjędo 10 wymiarów (k = 10)
 
-Szczegółowe testy znajdują się w pliku *Wybor_liczby_cech.ipnb*.
+Szczegółowe testy znajdują się w pliku [Wybor_liczby_cech.ipnb](Wybor_liczby_cech.ipnb).
 
 ## Wybór funkcji aktywacji
 Funkcja aktywacji jest wewnętrznym hiperparametrem sieci neuronowej.
@@ -103,7 +103,7 @@ Testowano funkcje:
 #### Wnioski:
 Najmniej błędów false-negative daje funkcja liniowa, jednak powoduje też nieproporcjonalnie dużą liczbę błędów false-positive, dlatego wybrano trochę gorszą funkcję logistyczną sigmoidę.
 
-Szczegółowe testy znajdują się w pliku *Wybor_funkcji_aktywacji.ipnb*.
+Szczegółowe testy znajdują się w pliku [Wybor_funkcji_aktywacji.ipnb](Wybor_funkcji_aktywacji.ipnb).
  
 ## Wybór optymalizatora
 Optymalizator, podobnie jak funkcja aktywacji jest wewnętrznym hiperparametrem sieci neuronowej.
@@ -116,7 +116,7 @@ Testowano metody:
 #### Wnioski:
 Najlepsze wyniki dla false-negative daje Gradient stochastyczny, jednak różnice te nie są zbyt duże. Za to w przypadku false-positive ADAM wydaje się stanowczo lepszy od pozostałych. Przy użyciu optymalizacji ADAM sieć uczy się szybciej niż z SGD, dlatego zastosowano optymalizacje ADAM.
 
-Szczegółowe testy znajdują się w pliku *Wybor_optymalizatora.ipnb*.
+Szczegółowe testy znajdują się w pliku [Wybor_optymalizatora.ipnb](Wybor_optymalizatora.ipnb).
 
 ## Wybór liczby neuronów w warstwie ukrytej sieci
 Liczba neuronów to podstawowy element wpływający na rozmiar sieci, jej zdolności do uczenia się. Ponieważ liczby neuronów na wejściu i wyjściu nie mogą być modyfikowane, badamy tylko zależnośc sprawności od liczby neuronów w warstwie ukrytej.
@@ -138,10 +138,10 @@ Badano wartości:
 #### Wnioski:
 Liczba neuronów wydaje sięnie wskazywać na jakąkolwiek tendencję w skuteczności klasyfikacji. Możliwe że problem jest zbyt prosty lub zbyt złożony aby zadane liczby neuronów były w stanie go dobrze odwzorować. Dlatego wybrano domyślną wartość liczby neuronów, tj. średnią z liczby neuronów na wejściu i na wyjściu - czyli w tym wypadku n = 5.
 
-Szczegółowe testy znajdują się w pliku *Wybor_liczby_neuronow.ipnb*.
+Szczegółowe testy znajdują się w pliku [Wybor_liczby_neuronow.ipnb](Wybor_liczby_neuronow.ipnb).
 
 ## Testy modelu
-Gotowy model z dobranymi parametrami przetestowano szczegółowo w pliku *Testy_modelu.ipnb*. Znajdują się tam także wykresy charakterystyki ROC, które wskazują, że model zwykle bardzo "pewnie" przewiduje wyniki. Prawdopodobnie wynika to z charakterystyki zbioru danych, lub samego problemu który może nie być odpowiedni dla machine learningu.
+Gotowy model z dobranymi parametrami przetestowano szczegółowo w pliku [Testy_modelu.ipnb](Testy_modelu.ipnb). Znajdują się tam także wykresy charakterystyki ROC, które wskazują, że model zwykle bardzo "pewnie" przewiduje wyniki. Prawdopodobnie wynika to z charakterystyki zbioru danych, lub samego problemu który może nie być odpowiedni dla machine learningu.
 
 Dużą zmianę działania modelu może wnieść przesunięcie progu klasyfikacji transakcji jako fałszywej, w wyżej wymienionym pliku przedstawiono testy dla przykładowych wartości. 
 
