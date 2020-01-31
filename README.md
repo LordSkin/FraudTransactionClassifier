@@ -5,7 +5,7 @@ Projekt ma na celu stworzenie klasyfikatora, który wykrywa oszustwa wśród tra
 https://www.kaggle.com/mlg-ulb/creditcardfraud
 
 Przedstawiony zbiór danych zawiera 284 807 transakcji, z czego 492 są zakwalifikowane jako oszustwo. Zbiór danych jest więc skrajnie niezbalansowany.
-Każdy wpis zawiera 30 zanimizowanych cech oraz przynależność do klasy (0,1)
+Każdy wpis zawiera 30 zanonimizowanych cech oraz przynależność do klasy (0,1)
 
 ## Wybór modelu
 Wyuczono i przetestowano następujące modele:
